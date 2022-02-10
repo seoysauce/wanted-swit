@@ -1,24 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks';
-import { decrement, increment, selectCount } from 'redux/counterSlice';
-import '../../styles/test.scss';
+import { messageAdded, messageDeleted } from 'redux/messagesSlice';
+import { setUser } from 'redux/userSlice';
+import { RegisterModal } from 'components';
+import { dateToString } from 'utils';
 
 export function Main() {
-  const count = useAppSelector((state) => state.counter.value);
+  const user = useAppSelector((state) => state.user);
+  const messages = useAppSelector((state) => state.messages);
   const dispatch = useAppDispatch();
+
+  const [isEmpty, setIsEmpty] = useState<boolean>(true);
+
+  useEffect(() => {
+    if (!user.userName) {
+      setIsEmpty(true);
+    }
+    console.log(messages);
+  }, [user, messages, isEmpty]);
+
+  const testMessage = {
+    userId: '4',
+    userName: 'Heejun',
+    profileImage: 'https://',
+    content: '테스트에요',
+    date: '2022-02-10 16:30:34',
+  };
+
+  const convertInputToMessage = (input: string) => ({
+    ...user,
+    content: input,
+    date: dateToString(new Date()),
+  });
 
   return (
     <div>
       <div>
-        <button type="button" aria-label="Increment value" onClick={() => dispatch(increment())}>
-          +
+        {isEmpty && <RegisterModal setIsEmpty={setIsEmpty} />}
+        <button type="button" onClick={() => dispatch(messageAdded(testMessage))}>
+          +message
         </button>
-        <span>{count}</span>
-        <button type="button" aria-label="Decrement value" onClick={() => dispatch(decrement())}>
-          -
+        <button type="button" onClick={() => dispatch(messageDeleted(testMessage))}>
+          -message
+        </button>
+        <button type="button" onClick={() => dispatch(setUser('GUEST'))}>
+          user
         </button>
       </div>
-      {/* omit additional rendering output here */}
     </div>
   );
 }
