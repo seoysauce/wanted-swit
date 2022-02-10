@@ -1,22 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { INITIAL_STATE } from 'commons';
+import { IMessage } from 'types';
 
-interface Message {
-  messageId: string;
-  userId: string;
-  userName: string;
-  profileImage: string;
-  content: string;
-  date: string;
-}
-
-const initialState: Array<Message> = INITIAL_STATE;
+const initialState: Array<IMessage> = INITIAL_STATE;
 
 export const messagesSlice = createSlice({
   name: 'messages',
   initialState,
   reducers: {
-    messageAdded: (state, action: PayloadAction<Message>) => {
+    messageAdded: (state, action: PayloadAction<IMessage>) => {
       state.push(action.payload);
     },
     messageDeleted: (state, action: PayloadAction<string>) => {

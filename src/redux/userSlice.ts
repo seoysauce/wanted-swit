@@ -1,17 +1,12 @@
 import { nanoid, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from 'types';
 
-interface User {
-  userId: string;
-  userName: string;
-  profileImage: string;
-}
-
-interface UserAction {
+interface IUserAction {
   userId: string;
   userName: string;
 }
 
-const initialState: User = {
+const initialState: IUser = {
   userId: '',
   userName: 'Guest',
   profileImage: '',

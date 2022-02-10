@@ -37,26 +37,9 @@ export function Main() {
   };
 
   return (
-    <div>
-      <div>
-        {isEmpty && <RegisterModal setIsEmpty={setIsEmpty} />}
-        <button type="button" onClick={() => sendMessage('테스트')}>
-          +message
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            dispatch(messageDeleted(testId));
-          }}
-        >
-          -message
-        </button>
-        <button type="button" onClick={() => dispatch(setUser('GUEST'))}>
-          user
-        </button>
-        <Messenger />
-      </div>
-      <InputMessage />
-    </div>
+    <>
+      {isEmpty && <RegisterModal setIsEmpty={setIsEmpty} />}
+      <Messenger />
+    </>
   );
 }
