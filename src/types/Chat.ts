@@ -12,3 +12,9 @@ export interface IMessage {
   content: string;
   date: string;
 }
+
+export interface ICommentState {
+  userId: string;
+  userName: string;
+  content: string;
+}

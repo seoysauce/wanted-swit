@@ -1,1 +1,1 @@
-export type { IMessage, IUser } from 'types/Chat';
+export type { IMessage, IUser, ICommentState } from 'types/Chat';
