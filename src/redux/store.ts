@@ -1,19 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './counterSlice';
+import userReducer from './userSlice';
+import messagesReducer from './messagesSlice';
 
 const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    user: userReducer,
+    messages: messagesReducer,
   },
 });
-
-/*
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
-});
-*/
 
 export type RootState = ReturnType<typeof store.getState>;
 
