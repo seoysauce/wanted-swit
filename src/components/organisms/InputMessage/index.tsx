@@ -1,60 +1,52 @@
 import React, { useState } from 'react';
-import { setUser } from 'redux/userSlice';
-import { useAppDispatch } from 'hooks';
-import ReactDOM from 'react-dom';
+import { messageAdded } from 'redux/messagesSlice';
+import { useAppDispatch, useAppSelector } from 'hooks';
+import { dateToString } from 'utils';
+import { nanoid } from '@reduxjs/toolkit';
 import * as S from './style';
 
-interface IModalProps {
-  name: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent<EventTarget>) => void;
-}
-
-function BackDrop() {
-  return <S.BackDrop />;
-}
-
-function Modal({ name, onChange, onSubmit }: IModalProps) {
-  return (
-    <S.Container onSubmit={onSubmit}>
-      <img src="https://app.swit.io/assets/images/lib/ui/logo-small.svg" alt="logo" />
-      <S.Text>닉네임을 입력해주세요!</S.Text>
-      <S.Input placeholder="입력해주세요" onChange={onChange} value={name} required />
-      <S.Button>확인</S.Button>
-    </S.Container>
-  );
-}
-
-export function RegisterModal({
-  setIsEmpty,
-}: {
-  setIsEmpty: React.Dispatch<React.SetStateAction<boolean>>;
-}) {
+export function InputMessage() {
+  const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  const [name, setName] = useState<string>('');
-  const backDropRoot: HTMLElement = document.getElementById('backdrop-root') as HTMLElement;
-  const modalRoot: HTMLElement = document.getElementById('modal-root') as HTMLElement;
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value);
+  const [message, setMessage] = useState('');
+
+  const convertInputToMessage = (input: string) => ({
+    ...user,
+    content: input,
+    date: dateToString(new Date()),
+    messageId: nanoid(),
+  });
+
+  const dispatchMessage = (input: string) => {
+    const convertedMessage = convertInputToMessage(input);
+    dispatch(messageAdded(convertedMessage));
   };
 
-  const onSubmit = (e: React.FormEvent<EventTarget>) => {
-    e.preventDefault();
+  const clearMessage = () => {
+    setMessage('');
+  };
 
-    if (name) {
-      setIsEmpty(false);
-      dispatch(setUser(name));
-    }
+  const sendMessage = () => {
+    clearMessage();
+    dispatchMessage(message);
   };
 
   return (
-    <>
-      {ReactDOM.createPortal(<BackDrop />, backDropRoot)}
-      {ReactDOM.createPortal(
-        <Modal name={name} onChange={onChange} onSubmit={onSubmit} />,
-        modalRoot,
-      )}
-    </>
+    <form>
+      <input
+        type="text"
+        placeholder="Enter message"
+        value={message}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setMessage(e.target.value)}
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+          // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+          e.key === 'Enter' && sendMessage();
+        }}
+      />
+      <button type="button" onClick={() => sendMessage()}>
+        전송
+      </button>
+    </form>
   );
 }

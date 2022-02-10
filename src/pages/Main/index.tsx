@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { messageAdded, messageDeleted } from 'redux/messagesSlice';
 import { setUser } from 'redux/userSlice';
-import { RegisterModal } from 'components';
+import { RegisterModal, InputMessage } from 'components';
 import { dateToString } from 'utils';
 import { nanoid } from '@reduxjs/toolkit';
 
@@ -55,6 +55,7 @@ export function Main() {
           user
         </button>
       </div>
+      <InputMessage />
     </div>
   );
 }
