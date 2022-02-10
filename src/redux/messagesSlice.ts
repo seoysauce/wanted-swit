@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from 'redux/store';
 import { INITIAL_STATE } from 'commons';
 
 interface Message {
+  messageId: string;
   userId: string;
   userName: string;
   profileImage: string;
@@ -19,8 +19,8 @@ export const messagesSlice = createSlice({
     messageAdded: (state, action: PayloadAction<Message>) => {
       state.push(action.payload);
     },
-    messageDeleted: (state, action: PayloadAction<Message>) => {
-      return state.filter((message) => message !== action.payload);
+    messageDeleted: (state, action: PayloadAction<string>) => {
+      return state.filter((message) => message.messageId !== action.payload);
     },
   },
 });

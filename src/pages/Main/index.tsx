@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { messageAdded, messageDeleted } from 'redux/messagesSlice';
 import { setUser } from 'redux/userSlice';
-import { RegisterModal, Messenger } from 'components';
+import { RegisterModal, Messenger, InputMessage } from 'components';
 import { dateToString } from 'utils';
+import { nanoid } from '@reduxjs/toolkit';
+
+let testId: string; //
 
 export function Main() {
   const user = useAppSelector((state) => state.user);
@@ -19,28 +22,33 @@ export function Main() {
     console.log(messages);
   }, [user, messages, isEmpty]);
 
-  const testMessage = {
-    userId: '4',
-    userName: 'Heejun',
-    profileImage: 'https://',
-    content: '테스트에요',
-    date: '2022-02-10 16:30:34',
-  };
-
   const convertInputToMessage = (input: string) => ({
     ...user,
     content: input,
     date: dateToString(new Date()),
+    messageId: nanoid(),
   });
+
+  const sendMessage = (input: string) => {
+    const convertedMessage = convertInputToMessage(input);
+    dispatch(messageAdded(convertedMessage));
+
+    testId = convertedMessage.messageId;
+  };
 
   return (
     <div>
       <div>
         {isEmpty && <RegisterModal setIsEmpty={setIsEmpty} />}
-        <button type="button" onClick={() => dispatch(messageAdded(testMessage))}>
+        <button type="button" onClick={() => sendMessage('테스트')}>
           +message
         </button>
-        <button type="button" onClick={() => dispatch(messageDeleted(testMessage))}>
+        <button
+          type="button"
+          onClick={() => {
+            dispatch(messageDeleted(testId));
+          }}
+        >
           -message
         </button>
         <button type="button" onClick={() => dispatch(setUser('GUEST'))}>
@@ -48,6 +56,7 @@ export function Main() {
         </button>
         <Messenger />
       </div>
+      <InputMessage />
     </div>
   );
 }

@@ -1,5 +1,8 @@
+import { nanoid } from '@reduxjs/toolkit';
+
 export const INITIAL_STATE = [
   {
+    messageId: nanoid(),
     userId: '1',
     userName: 'Nate Yeum',
     profileImage: 'https://',
@@ -7,14 +10,16 @@ export const INITIAL_STATE = [
     date: '2022-02-10 16:30:30',
   },
   {
-    userId: '2',
+    messageId: nanoid(),
+    userId: 'agnobinqn',
     userName: '김재원',
     profileImage: 'https://',
     content: '티라노 팀입니다!',
     date: '2022-02-10 16:30:32',
   },
   {
-    userId: '3',
+    messageId: nanoid(),
+    userId: 'aslnballl',
     userName: 'Seoysauce',
     profileImage: 'https://',
     content: '환영합니다!',
