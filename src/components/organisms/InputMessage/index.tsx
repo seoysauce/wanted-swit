@@ -3,7 +3,7 @@ import { messageAdded } from 'redux/messagesSlice';
 import { useAppDispatch, useAppSelector } from 'hooks';
 import { dateToString } from 'utils';
 import { nanoid } from '@reduxjs/toolkit';
-import * as S from './style';
+// import * as S from './style';
 
 export function InputMessage() {
   const user = useAppSelector((state) => state.user);
