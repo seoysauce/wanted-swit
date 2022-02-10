@@ -2,9 +2,9 @@ import React from 'react';
 import * as S from './style';
 
 interface IContentProps {
-  contnet: string;
+  content: string;
 }
 
-export function Content({ content }: { content: IContentProps }) {
+export function Content({ content }: IContentProps) {
   return <S.Content>{content}</S.Content>;
 }
