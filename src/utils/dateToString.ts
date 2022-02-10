@@ -11,10 +11,10 @@ export const dateToString = (date: Date) => {
   const hourStr = hour < 10 ? `0${hour}` : `${hour}`;
 
   const minites = date.getMinutes();
-  const minitesStr = minites < 10 ? `0${minites}` : `minites`;
+  const minitesStr = minites < 10 ? `0${minites}` : `${minites}`;
 
   const seconds = date.getSeconds();
-  const secondsStr = seconds < 10 ? `0${seconds}` : `seconds`;
+  const secondsStr = seconds < 10 ? `0${seconds}` : `${seconds}`;
 
   return `${yearStr}-${monthStr}-${dayStr} ${hourStr}:${minitesStr}:${secondsStr}`;
 };
