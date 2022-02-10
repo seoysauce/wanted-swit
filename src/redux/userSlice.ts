@@ -13,8 +13,8 @@ interface UserAction {
 
 const initialState: User = {
   userId: '',
-  userName: '',
-  profileImage: 'https://picsum.photos/200/300',
+  userName: 'Guest',
+  profileImage: '',
 };
 
 const userSlice = createSlice({
@@ -23,7 +23,13 @@ const userSlice = createSlice({
   reducers: {
     setUser: {
       reducer: (state, action: PayloadAction<UserAction>) => ({ ...state, ...action.payload }),
-      prepare: (name: string) => ({ payload: { userId: nanoid(), userName: name } }),
+      prepare: (name: string) => ({
+        payload: {
+          userId: nanoid(),
+          userName: name,
+          profileImage: 'https://picsum.photos/200/300',
+        },
+      }),
     },
   },
 });
