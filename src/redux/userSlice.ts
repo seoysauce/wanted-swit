@@ -1,20 +1,15 @@
 import { nanoid, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from 'types';
 
-interface User {
-  userId: string;
-  userName: string;
-  profileImage: string;
-}
-
-interface UserAction {
+interface IUserAction {
   userId: string;
   userName: string;
 }
 
-const initialState: User = {
+const initialState: IUser = {
   userId: '',
-  userName: '',
-  profileImage: 'https://picsum.photos/200/300',
+  userName: 'Guest',
+  profileImage: '',
 };
 
 const userSlice = createSlice({
@@ -22,8 +17,14 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: {
-      reducer: (state, action: PayloadAction<UserAction>) => ({ ...state, ...action.payload }),
-      prepare: (name: string) => ({ payload: { userId: nanoid(), userName: name } }),
+      reducer: (state, action: PayloadAction<IUserAction>) => ({ ...state, ...action.payload }),
+      prepare: (name: string) => ({
+        payload: {
+          userId: nanoid(),
+          userName: name,
+          profileImage: 'https://picsum.photos/200/300',
+        },
+      }),
     },
   },
 });

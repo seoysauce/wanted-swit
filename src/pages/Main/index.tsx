@@ -16,12 +16,9 @@ export function Main() {
   }, [user, messages, isEmpty]);
 
   return (
-    <div>
-      <div>
-        {isEmpty && <RegisterModal setIsEmpty={setIsEmpty} />}
-        <Messenger />
-        <InputMessage />
-      </div>
-    </div>
+    <>
+      {isEmpty && <RegisterModal setIsEmpty={setIsEmpty} />}
+      <Messenger />
+    </>
   );
 }
