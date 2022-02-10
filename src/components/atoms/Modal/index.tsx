@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { setUser } from 'redux/userSlice';
 import { useAppDispatch } from 'hooks';
 import ReactDOM from 'react-dom';
+import { Logo } from 'assets';
 import * as S from './style';
 
 interface IModalProps {
@@ -17,7 +18,7 @@ function BackDrop() {
 function Modal({ name, onChange, onSubmit }: IModalProps) {
   return (
     <S.Container onSubmit={onSubmit}>
-      <img src="https://app.swit.io/assets/images/lib/ui/logo-small.svg" alt="logo" />
+      <Logo />
       <S.Text>닉네임을 입력해주세요!</S.Text>
       <S.Input placeholder="입력해주세요" onChange={onChange} value={name} required />
       <S.Button>확인</S.Button>
