@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from 'hooks';
 import { messageAdded, messageDeleted } from 'redux/messagesSlice';
 import { setUser } from 'redux/userSlice';
-import { RegisterModal } from 'components';
+import { RegisterModal, Messenger } from 'components';
 import { dateToString } from 'utils';
 
 export function Main() {
@@ -46,6 +46,7 @@ export function Main() {
         <button type="button" onClick={() => dispatch(setUser('GUEST'))}>
           user
         </button>
+        <Messenger />
       </div>
     </div>
   );
