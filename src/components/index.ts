@@ -1,5 +1,12 @@
 // Atoms
 export { RegisterModal } from 'components/atoms/Modal';
+export { Content } from 'components/atoms/Content';
+export { Profile } from 'components/atoms/Profile';
+export { UserInfo } from 'components/atoms/UserInfo';
+export { FloatButton } from 'components/atoms/FloatButton';
+
+// Molecules
+export { Chat } from 'components/molecules/Chat';
 
 // Organisms
 export { NavBar } from 'components/organisms/NavBar';
