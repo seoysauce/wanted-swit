@@ -17,7 +17,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: {
-      reducer: (state, action: PayloadAction<UserAction>) => ({ ...state, ...action.payload }),
+      reducer: (state, action: PayloadAction<IUserAction>) => ({ ...state, ...action.payload }),
       prepare: (name: string) => ({
         payload: {
           userId: nanoid(),
