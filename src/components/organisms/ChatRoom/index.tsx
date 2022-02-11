@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAppSelector } from 'hooks';
 import { ICommentState } from 'types';
 import { Chat, InputMessage } from 'components';
@@ -10,15 +10,21 @@ export function ChatRoom() {
     userName: '',
     content: '',
   };
-  const [commnet, setComment] = useState<ICommentState>(commentInitial);
+  const [comment, setComment] = useState<ICommentState>(commentInitial);
+  const [initialInput, setInitialInput] = useState('');
   const messages = useAppSelector((state) => state.messages);
-  console.log(commnet);
+
   return (
     <S.Container>
       {messages.map((message) => (
-        <Chat key={message.messageId} message={message} setComment={setComment} />
+        <Chat
+          key={message.messageId}
+          message={message}
+          setComment={setComment}
+          setInitialInput={setInitialInput}
+        />
       ))}
-      <InputMessage />
+      <InputMessage initialInput={initialInput} />
     </S.Container>
   );
 }
