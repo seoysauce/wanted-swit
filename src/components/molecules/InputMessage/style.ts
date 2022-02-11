@@ -37,6 +37,10 @@ export const TextArea = styled.textarea`
   resize: none;
 `;
 
+interface IButton {
+  disabled: boolean;
+}
+
 export const Button = styled.button`
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -59,6 +63,7 @@ export const Button = styled.button`
   line-height: 1.5;
   background: #ff595d;
   border: 1px solid #ff595d;
+  ${(props) => props.disabled && '-webkit-filter: grayscale(100%);'}
   color: #fff;
   box-shadow: 1px 1px 3px rgba(28, 133, 255, 0.3);
   padding: 5px 14px !important;
@@ -68,5 +73,4 @@ export const Button = styled.button`
   top: 26px;
   right: 25px;
   border-radius: 25px;
-  transition: all 0.5s ease;
 `;
