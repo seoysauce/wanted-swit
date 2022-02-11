@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { STYLE } from 'commons';
 
 export const BackDrop = styled.div`
   position: fixed;
@@ -16,19 +17,23 @@ export const Container = styled.form`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 30%;
+  width: 400px;
   height: 300px;
   z-index: 100;
   overflow: hidden;
 
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 10px;
+  border-radius: 20px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
+    width: 280px;
+    height: 210px;
+  }
 `;
 
 export const Text = styled.div`
@@ -39,6 +44,10 @@ export const Text = styled.div`
   text-align: left;
   word-wrap: break-word;
   margin: 30px 0;
+  @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
+    font-size: 20px;
+    margin: 20px 0;
+  }
 `;
 
 export const Input = styled.input`
@@ -61,11 +70,20 @@ export const Input = styled.input`
   text-overflow: ellipsis;
   vertical-align: middle;
   white-space: nowrap;
+  &:focus {
+    outline: none;
+  }
+  @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
+    font-size: 13px;
+    /* padding: 2px 4px; */
+    min-height: 30px;
+    width: 200px;
+  }
 `;
 
 export const Button = styled.button`
   background-color: #efefef;
-  border-radius: 24px;
+  border-radius: 10px;
   border-width: 0;
   box-sizing: border-box;
   color: rgba(16, 16, 16, 0.3);
@@ -74,11 +92,17 @@ export const Button = styled.button`
   font-size: 100%;
   line-height: normal;
   margin-top: 30px;
-  min-height: 48px;
-  min-width: 60px;
-  padding: 12px 16px;
+  height: 40px;
+  width: 90px;
   text-align: center;
   vertical-align: middle;
+  @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
+    font-size: 14px;
+    width: 80px;
+    height: 35px;
+    padding: 0;
+    margin-top: 20px;
+  }
 
   &:hover {
     background: #ff585d;

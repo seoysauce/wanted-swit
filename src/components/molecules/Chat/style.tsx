@@ -13,7 +13,7 @@ export const Container = styled.div`
   transition: 0.5s;
 
   &:hover {
-    background: #f1f1f1;
+    background: #f1f2f5;
   }
 
   &:before:hover {
