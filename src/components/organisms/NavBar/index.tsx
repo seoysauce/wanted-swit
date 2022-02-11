@@ -10,7 +10,6 @@ export function NavBar() {
   const user = useAppSelector((state) => state.user);
   const messages = useAppSelector((state) => state.messages);
   const [searchTerm, setSearchTerm] = useState('');
-  console.log('messages', messages);
 
   return (
     <S.Container>

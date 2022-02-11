@@ -4,7 +4,6 @@ import { RegisterModal, Messenger } from 'components';
 
 export function Main() {
   const user = useAppSelector((state) => state.user);
-  const messages = useAppSelector((state) => state.messages);
 
   const [isEmpty, setIsEmpty] = useState<boolean>(true);
 
@@ -12,8 +11,7 @@ export function Main() {
     if (!user.userName) {
       setIsEmpty(true);
     }
-    console.log(messages);
-  }, [user, messages, isEmpty]);
+  }, [user, isEmpty]);
 
   return (
     <>

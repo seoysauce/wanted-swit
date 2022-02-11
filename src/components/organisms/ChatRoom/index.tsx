@@ -12,8 +12,9 @@ export function ChatRoom() {
     userName: '',
     content: '',
   };
-  const [comment, setComment] = useState<ICommentState>(commentInitial);
   const messages = useAppSelector((state) => state.messages);
+  const [comment, setComment] = useState<ICommentState>(commentInitial);
+  const [lastMessage, setLastMessage] = useState(messages[messages.length - 1]);
   const messageBoxRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -23,8 +24,13 @@ export function ChatRoom() {
   };
 
   useEffect(() => {
-    scrollToBottom();
+    if (messages.length === 0) return;
+    setLastMessage(messages[messages.length - 1]);
   }, [messages]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [lastMessage]);
 
   return (
     <S.Container>
