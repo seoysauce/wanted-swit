@@ -23,6 +23,9 @@ const GlobalStyle = createGlobalStyle`
 ::-webkit-scrollbar-thumb:hover {
   background: #c4c4c4;
 }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 `;
 
 export default GlobalStyle;
