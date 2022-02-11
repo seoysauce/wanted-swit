@@ -8,10 +8,9 @@ import * as S from './style';
 interface IChatProps {
   message: IMessage;
   setComment: React.Dispatch<React.SetStateAction<ICommentState>>;
-  setInitialInput: (initialInput: string) => void;
 }
 
-export function Chat({ message, setComment, setInitialInput }: IChatProps) {
+export function Chat({ message, setComment }: IChatProps) {
   const [isHover, setIsHover] = useState<boolean>(false);
   const { userId, messageId, userName, profileImage, content, date } = message;
   const dispatch = useAppDispatch();
@@ -25,7 +24,6 @@ export function Chat({ message, setComment, setInitialInput }: IChatProps) {
       userName,
       content,
     });
-    setInitialInput(`${userId}\n${content}\n(회신)\n`);
   };
 
   return (

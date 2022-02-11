@@ -1,30 +1,40 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { messageAdded } from 'redux/messagesSlice';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { dateToString } from 'utils';
+import { dateToString, isMessageEmpty } from 'utils';
 import { nanoid } from '@reduxjs/toolkit';
 import { INPUT_MESSAGE } from 'commons';
 import * as S from './style';
 
 interface IInputMessage {
-  initialInput: string;
+  replyInfo: {
+    userId: string;
+    userName: string;
+    content: string;
+  };
 }
 
-export function InputMessage({ initialInput }: IInputMessage) {
+export function InputMessage({ replyInfo }: IInputMessage) {
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const textAreaRef = useRef(null);
 
+  // const [messagePreFix, setMessagePreFix] = useState('');
   const [message, setMessage] = useState('');
-  const [inputRows, setInputRows] = useState(1);
+  const [inputRows, setInputRows] = useState(4);
 
   useEffect(() => {
-    setMessage(initialInput);
-  }, [initialInput]);
+    if (replyInfo.userName !== '' && replyInfo.content !== '') {
+      const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n\n`;
+      // setMessagePreFix(preFix);
+      setMessage(`${preFix}${message}`);
+    }
+  }, [replyInfo]);
 
   const clearInput = () => {
     setMessage('');
-    setInputRows(1);
+    // setMessagePreFix('');
+    setInputRows(4);
   };
 
   const setRows = (amount: number) => {
@@ -45,7 +55,8 @@ export function InputMessage({ initialInput }: IInputMessage) {
 
   const sendMessage = () => {
     clearInput();
-    if (message === '' || message === '\n') return;
+    if (isMessageEmpty(message)) return;
+    // dispatchMessage(`${messagePreFix}${message}`);
     dispatchMessage(message);
   };
 
@@ -54,7 +65,9 @@ export function InputMessage({ initialInput }: IInputMessage) {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // console.log(e.target.value);
     setMessage(e.target.value);
+    // setMessage(e.target.value.replaceAll(messagePreFix, ''));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -78,12 +91,10 @@ export function InputMessage({ initialInput }: IInputMessage) {
           onKeyDown={handleKeyDown}
           rows={inputRows}
           cols={INPUT_MESSAGE.WIDTH}
-          value={message}
+          value={message} // value={`${messagePreFix}${message}`}
           ref={textAreaRef}
-        >
-          {initialInput}
-        </S.TextArea>
-        <S.Button type="button" onClick={() => sendMessage()}>
+        />
+        <S.Button disabled={isMessageEmpty(message)} type="button" onClick={() => sendMessage()}>
           전송
         </S.Button>
       </S.InputBox>
