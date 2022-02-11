@@ -8,13 +8,15 @@ export const InputBox = styled.div`
   font-size: 14px;
   line-height: 1.42857143;
   font-family: 'Roboto', sans-serif !important;
-  color: #747584;
+  /* color: #747584; */
   box-sizing: border-box;
   width: 100%;
   float: left;
-  background: #edf2f6;
+  background: #f2f5f9;
   padding: 20px;
-  border-radius: 5px;
+  border-top: 1px solid #e6e6e6;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   position: relative;
 `;
 
@@ -35,6 +37,9 @@ export const TextArea = styled.textarea`
   background: transparent;
   margin-bottom: 10px;
   resize: none;
+  &::placeholder {
+    color: #c4c4c4;
+  }
 `;
 
 interface IButton {

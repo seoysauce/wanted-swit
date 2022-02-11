@@ -5,7 +5,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  /* width: 100%; */
   background-color: #f8fafb;
   border: 1px solid #e6e6e6;
   border-radius: 20px;
@@ -23,7 +22,7 @@ export const TopBar = styled.div`
   border-top-right-radius: 20px;
   background-color: #f2f5f9;
   width: 100%;
-  height: 51px;
+  min-height: 51px;
   border-bottom: 1px solid #e6e6e6;
   display: flex;
   align-items: center;
@@ -44,16 +43,14 @@ export const Member = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
 export const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  padding: 20px;
+  overflow-y: scroll;
   height: 100%;
 `;
 
 export const MessageBox = styled.div`
-  overflow-y: scroll;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  padding: 20px;
 `;
