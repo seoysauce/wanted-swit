@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppSelector } from 'hooks';
 import { ICommentState } from 'types';
 import { Chat, InputMessage } from 'components';
@@ -14,6 +14,17 @@ export function ChatRoom() {
   };
   const [comment, setComment] = useState<ICommentState>(commentInitial);
   const messages = useAppSelector((state) => state.messages);
+  const messageBoxRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (messageBoxRef.current) {
+      messageBoxRef.current.scrollTop = messageBoxRef.current.scrollHeight;
+    }
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   return (
     <S.Container>
@@ -25,9 +36,11 @@ export function ChatRoom() {
         </S.Member>
       </S.TopBar>
       <S.Wrap>
-        {messages.map((message) => (
-          <Chat key={message.messageId} message={message} setComment={setComment} />
-        ))}
+        <S.MessageBox ref={messageBoxRef}>
+          {messages.map((message) => (
+            <Chat key={message.messageId} message={message} setComment={setComment} />
+          ))}
+        </S.MessageBox>
         <InputMessage replyInfo={comment} />
       </S.Wrap>
     </S.Container>
