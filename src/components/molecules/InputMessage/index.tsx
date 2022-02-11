@@ -1,23 +1,40 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { messageAdded } from 'redux/messagesSlice';
 import { useAppDispatch, useAppSelector } from 'hooks';
-import { dateToString } from 'utils';
+import { dateToString, isMessageEmpty } from 'utils';
 import { nanoid } from '@reduxjs/toolkit';
 import { INPUT_MESSAGE } from 'commons';
 import * as S from './style';
 
-export function InputMessage() {
+interface IInputMessage {
+  replyInfo: {
+    userId: string;
+    userName: string;
+    content: string;
+  };
+}
+
+export function InputMessage({ replyInfo }: IInputMessage) {
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const textAreaRef = useRef(null);
 
+  // const [messagePreFix, setMessagePreFix] = useState('');
   const [message, setMessage] = useState('');
-  const [inputRows, setInputRows] = useState(1);
+  const [inputRows, setInputRows] = useState(4);
 
-  const textAreaRef = useRef<HTMLTextAreaElement>(null); //
+  useEffect(() => {
+    if (replyInfo.userName !== '' && replyInfo.content !== '') {
+      const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n\n`;
+      // setMessagePreFix(preFix);
+      setMessage(`${preFix}${message}`);
+    }
+  }, [replyInfo]);
 
   const clearInput = () => {
     setMessage('');
-    setInputRows(1);
+    // setMessagePreFix('');
+    setInputRows(4);
   };
 
   const setRows = (amount: number) => {
@@ -37,8 +54,9 @@ export function InputMessage() {
   };
 
   const sendMessage = () => {
-    if (message === '') return;
     clearInput();
+    if (isMessageEmpty(message)) return;
+    // dispatchMessage(`${messagePreFix}${message}`);
     dispatchMessage(message);
   };
 
@@ -47,12 +65,15 @@ export function InputMessage() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    // console.log(e.target.value);
     setMessage(e.target.value);
+    // setMessage(e.target.value.replaceAll(messagePreFix, ''));
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     if (e.key === 'Enter') {
+      e.preventDefault();
       if (e.shiftKey) {
         setRows(inputRows + 1);
         return;
@@ -70,10 +91,10 @@ export function InputMessage() {
           onKeyDown={handleKeyDown}
           rows={inputRows}
           cols={INPUT_MESSAGE.WIDTH}
-          value={message}
+          value={message} // value={`${messagePreFix}${message}`}
           ref={textAreaRef}
         />
-        <S.Button type="button" onClick={() => sendMessage()}>
+        <S.Button disabled={isMessageEmpty(message)} type="button" onClick={() => sendMessage()}>
           전송
         </S.Button>
       </S.InputBox>
