@@ -12,12 +12,15 @@ export function ChatRoom() {
   };
   const [commnet, setComment] = useState<ICommentState>(commentInitial);
   const messages = useAppSelector((state) => state.messages);
-  console.log(commnet);
+  // console.log(commnet);
   return (
     <S.Container>
-      {messages.map((message) => (
-        <Chat key={message.messageId} message={message} setComment={setComment} />
-      ))}
+      <S.Title>Team Tyranno</S.Title>
+      <S.Wrap>
+        {messages.map((message) => (
+          <Chat key={message.messageId} message={message} setComment={setComment} />
+        ))}
+      </S.Wrap>
     </S.Container>
   );
 }

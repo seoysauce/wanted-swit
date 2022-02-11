@@ -20,19 +20,33 @@ export function NavBar() {
           <S.UserName>{user.userName}</S.UserName>
         </S.UserInfo>
       </S.UserBox>
-      <S.Search>
-        <S.Input type="text" placeholder="search people" />
-        <Magnifier />
-      </S.Search>
-      {CHAT_ROOM_LIST.map((e) => (
+      <S.ChatList>
+        <S.Search>
+          <S.Input type="text" placeholder="search people" spellCheck="false" />
+          <Magnifier />
+        </S.Search>
         <ChatListItem
-          key={nanoid()}
-          title={e.title}
-          unread={e.unread}
-          lastMessage={e.lastMessage}
-          lastTimestamp={e.lastTimestamp}
+          title="Team Tyranno"
+          imageUrl="https://art.pixilart.com/d8a5d6f1f1f432a.png"
+          unread={0}
+          lastMessage="ㅎㅇ"
+          lastTimestamp="08:10"
+          status="online"
+          isSelected
         />
-      ))}
+        {CHAT_ROOM_LIST.map((e) => (
+          <ChatListItem
+            key={nanoid()}
+            title={e.title}
+            imageUrl={e.imageUrl}
+            unread={e.unread}
+            lastMessage={e.lastMessage}
+            lastTimestamp={e.lastTimestamp}
+            status={e.status}
+            isSelected={false}
+          />
+        ))}
+      </S.ChatList>
     </S.Container>
   );
 }
