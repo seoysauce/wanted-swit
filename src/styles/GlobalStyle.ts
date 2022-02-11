@@ -7,12 +7,22 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   :root {
-    background-color: #ffffff;
+    background-color: #F4F5F8;
   }
   a {
     color: inherit;
     text-decoration: none;
   }
+  ::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: #e2e2e2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c4c4c4;
+}
 `;
 
 export default GlobalStyle;
