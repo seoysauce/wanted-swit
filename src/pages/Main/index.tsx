@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAppSelector } from 'hooks';
-import { RegisterModal, Messenger, InputMessage } from 'components';
+import { RegisterModal, Messenger } from 'components';
 
 export function Main() {
   const user = useAppSelector((state) => state.user);

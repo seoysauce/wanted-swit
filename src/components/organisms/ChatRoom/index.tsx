@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAppSelector } from 'hooks';
 import { ICommentState } from 'types';
-import { Chat } from 'components';
+import { Chat, InputMessage } from 'components';
 import * as S from './style';
 
 export function ChatRoom() {
@@ -18,6 +18,7 @@ export function ChatRoom() {
       {messages.map((message) => (
         <Chat key={message.messageId} message={message} setComment={setComment} />
       ))}
+      <InputMessage />
     </S.Container>
   );
 }

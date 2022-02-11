@@ -8,14 +8,12 @@ export { FloatButton } from 'components/atoms/FloatButton';
 
 // Molecules
 export { Chat } from 'components/molecules/Chat';
-
-// Molecules
 export { ChatListItem } from 'components/molecules/ChatListItem';
+export { InputMessage } from 'components/molecules/InputMessage';
 
 // Organisms
 export { NavBar } from 'components/organisms/NavBar';
 export { ChatRoom } from 'components/organisms/ChatRoom';
-export { InputMessage } from 'components/organisms/InputMessage';
 
 // Templates
 export { Messenger } from 'components/templates/Messenger';
