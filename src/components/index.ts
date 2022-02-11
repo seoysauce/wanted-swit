@@ -1,5 +1,6 @@
 // Atoms
-export { RegisterModal } from 'components/atoms/Modal';
+export { DeleteModal } from 'components/atoms/DeleteModal';
+export { RegisterModal } from 'components/atoms/RegisterModal';
 export { Content } from 'components/atoms/Content';
 export { Profile } from 'components/atoms/Profile';
 export { UserInfo } from 'components/atoms/UserInfo';

@@ -33,7 +33,7 @@ export function Chat({ message, setComment }: IChatProps) {
         <UserInfo userName={userName} date={date} />
         <Content content={content} />
       </div>
-      {isHover && <FloatButton id={userId} onDelete={onDelete} onComment={onComment} />}
+      {isHover && <FloatButton content={content} onDelete={onDelete} onComment={onComment} />}
     </S.Container>
   );
 }

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { DeleteModal } from 'components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faComment } from '@fortawesome/free-solid-svg-icons';
-import { useAppSelector } from 'hooks';
 import * as S from './style';
 
 interface IFloatButtonProps {
-  id: string;
+  content: string;
   onDelete: () => {
     payload: string;
     type: string;
@@ -13,28 +13,18 @@ interface IFloatButtonProps {
   onComment: () => void;
 }
 
-export function FloatButton({ id, onDelete, onComment }: IFloatButtonProps) {
-  const { userId } = useAppSelector((state) => state.user);
-
-  const deleteMessage = (text: string) => {
-    if (window.confirm(`${text}`) === true) {
-      onDelete();
-    }
-  };
+export function FloatButton({ content, onDelete, onComment }: IFloatButtonProps) {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const onClick = () => {
-    const isSamePerson = userId === id;
-
-    if (isSamePerson) {
-      deleteMessage('이 메시지를 삭제하시겠습니까?');
-    } else {
-      deleteMessage('나에게만 삭제하시겠습니까?');
-    }
+    setIsOpen(true);
   };
+
   return (
     <S.Containr>
       <FontAwesomeIcon className="delete" icon={faTrash} onClick={onClick} />
       <FontAwesomeIcon className="comment" icon={faComment} onClick={onComment} />
+      {isOpen && <DeleteModal content={content} onDelete={onDelete} setIsOpen={setIsOpen} />}
     </S.Containr>
   );
 }
