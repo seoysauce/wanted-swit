@@ -1,6 +1,19 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+const statusColor = (status: string): string => {
+  switch (status) {
+    case 'online':
+      return '#6cb853';
+    case 'away':
+      return '#feb52e';
+    case 'offline':
+      return '#a6b2be';
+    default:
+      return '#6cb853';
+  }
+};
+
+export const Container = styled.div<{ isSelected: boolean }>`
   display: flex;
   height: 70px;
   justify-content: space-between;
@@ -9,9 +22,11 @@ export const Container = styled.div`
   cursor: pointer;
   padding: 10px;
   border-radius: 10px;
+  margin: 5px 0;
   &:hover {
     background-color: #f8fafb;
   }
+  ${(props) => props.isSelected && `border: 1px solid #e2e2e2; background-color: #f8fafb`}
 `;
 
 export const Wrap = styled.div`
@@ -25,20 +40,22 @@ export const ImageBox = styled.div`
 
 export const Image = styled.img`
   height: 50px;
+  width: 50px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 `;
 
-export const OnlineBadge = styled.div`
+export const OnlineBadge = styled.div<{ status: string }>`
   width: 13px;
   height: 13px;
   border-radius: 50%;
   background-color: #6cb853;
   position: absolute;
-  right: 3px;
-  bottom: 3px;
+  right: 2px;
+  bottom: 2px;
   border: 2px solid #ffffff;
+  ${(props) => `background-color: ${statusColor(props.status)};`}
 `;
 
 export const Info = styled.div`
@@ -58,11 +75,13 @@ export const LastMessage = styled.div`
   color: rgba(0, 0, 0, 0.4);
 `;
 export const Div = styled.div`
+  height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-end;
-  gap: 10px;
+  padding: 5px 0px;
+  gap: 15px;
 `;
 
 export const Timestamp = styled.div`

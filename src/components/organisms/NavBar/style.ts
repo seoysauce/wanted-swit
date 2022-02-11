@@ -1,16 +1,25 @@
 import styled from 'styled-components';
+import { STYLE } from 'commons';
 
 export const Container = styled.div`
-  width: 300px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  /* background-color: beige; */
+  align-items: flex-start;
   margin-right: 10px;
+  svg {
+    margin-left: 10px;
+  }
+  @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
+    transform: translateX(-320px);
+    transition: transform 0.3s ease-in-out;
+  }
 `;
 
 export const Line = styled.hr`
   margin-top: 20px;
-  width: 100%;
+  margin-right: 30px;
+  width: 93%;
   border: 0;
   border-top: 1px solid #e6e6e6;
 `;
@@ -50,7 +59,7 @@ export const UserImage = styled.img`
   height: 50px;
   object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.2);
 `;
 
 export const UserInfo = styled.div`
@@ -70,4 +79,10 @@ export const UserName = styled.div`
   color: #ff595d;
   font-weight: 800;
   font-size: 24px;
+`;
+
+export const ChatList = styled.div`
+  overflow-y: scroll;
+  padding-right: 10px;
+  width: 100%;
 `;

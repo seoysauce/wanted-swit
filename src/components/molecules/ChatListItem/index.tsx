@@ -5,22 +5,33 @@ import * as S from './style';
 
 interface IChatListItemProps {
   title: string;
+  imageUrl: string;
   unread: number;
   lastMessage: string;
   lastTimestamp: string;
+  isSelected: boolean;
+  status: string;
 }
 
-export function ChatListItem({ title, unread, lastMessage, lastTimestamp }: IChatListItemProps) {
+export function ChatListItem({
+  title,
+  imageUrl,
+  unread,
+  lastMessage,
+  lastTimestamp,
+  isSelected,
+  status,
+}: IChatListItemProps) {
   return (
-    <S.Container>
+    <S.Container isSelected={isSelected}>
       <S.Wrap>
         <S.ImageBox>
-          <S.Image src={defaultUser} />
-          <S.OnlineBadge />
+          <S.Image src={imageUrl || defaultUser} />
+          <S.OnlineBadge status={status} />
         </S.ImageBox>
         <S.Info>
           <S.Name>{trimString(title, 13)}</S.Name>
-          <S.LastMessage>{trimString(lastMessage, 13)}</S.LastMessage>
+          <S.LastMessage>{trimString(lastMessage, 15)}</S.LastMessage>
         </S.Info>
       </S.Wrap>
       <S.Div>
