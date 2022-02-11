@@ -26,7 +26,7 @@ export const Text = styled.span`
 `;
 
 export const Date = styled.span`
-  color: #8b8e95;
+  color: #c2c2c2;
   font-size: 12px;
   margin-right: 4px;
   word-break: break-word;

@@ -93,6 +93,7 @@ export function InputMessage({ replyInfo }: IInputMessage) {
           cols={INPUT_MESSAGE.WIDTH}
           value={message} // value={`${messagePreFix}${message}`}
           ref={textAreaRef}
+          spellCheck={false}
         />
         <S.Button disabled={isMessageEmpty(message)} type="button" onClick={() => sendMessage()}>
           전송

@@ -32,7 +32,7 @@ export function Chat({ message, setComment }: IChatProps) {
       <Profile profileImage={profileImage} />
       <div>
         <UserInfo
-          userName={signInUserInfo.userId === userId ? `*${userName}` : userName}
+          userName={signInUserInfo.userId === userId ? `${userName} *` : userName}
           date={date}
         />
         <Content content={content} />
