@@ -22,6 +22,7 @@ export const Container = styled.div<{ isSelected: boolean }>`
   cursor: pointer;
   padding: 10px;
   border-radius: 10px;
+  margin: 5px 0;
   &:hover {
     background-color: #f8fafb;
   }

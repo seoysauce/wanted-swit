@@ -31,7 +31,7 @@ export function ChatListItem({
         </S.ImageBox>
         <S.Info>
           <S.Name>{trimString(title, 13)}</S.Name>
-          <S.LastMessage>{trimString(lastMessage, 16)}</S.LastMessage>
+          <S.LastMessage>{trimString(lastMessage, 15)}</S.LastMessage>
         </S.Info>
       </S.Wrap>
       <S.Div>

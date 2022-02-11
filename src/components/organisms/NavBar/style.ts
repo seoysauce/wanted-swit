@@ -2,18 +2,24 @@ import styled from 'styled-components';
 import { STYLE } from 'commons';
 
 export const Container = styled.div`
-  width: 300px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   margin-right: 10px;
+  svg {
+    margin-left: 10px;
+  }
   @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
-    display: none;
+    transform: translateX(-320px);
+    transition: transform 0.3s ease-in-out;
   }
 `;
 
 export const Line = styled.hr`
   margin-top: 20px;
-  width: 100%;
+  margin-right: 30px;
+  width: 93%;
   border: 0;
   border-top: 1px solid #e6e6e6;
 `;
@@ -78,4 +84,5 @@ export const UserName = styled.div`
 export const ChatList = styled.div`
   overflow-y: scroll;
   padding-right: 10px;
+  width: 100%;
 `;
