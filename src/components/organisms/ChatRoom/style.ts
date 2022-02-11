@@ -50,6 +50,10 @@ export const Wrap = styled.div`
   flex-direction: column;
   justify-content: end;
   padding: 20px;
+  height: 100%;
+`;
+
+export const MessageBox = styled.div`
   overflow-y: scroll;
   height: 100%;
 `;
