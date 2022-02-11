@@ -21,7 +21,7 @@ function Modal({ name, onChange, onSubmit }: IModalProps) {
       <Logo />
       <S.Text>닉네임을 입력해주세요!</S.Text>
       <S.Input placeholder="입력해주세요" onChange={onChange} value={name} required />
-      <S.Button>확인</S.Button>
+      <S.Button>채팅 시작</S.Button>
     </S.Container>
   );
 }

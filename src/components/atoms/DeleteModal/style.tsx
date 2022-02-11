@@ -78,7 +78,6 @@ const Button = styled.button`
   margin-top: 30px;
   height: 40px;
   min-width: 60px;
-  /* padding: 12px 16px; */
   text-align: center;
   vertical-align: middle;
   margin-right: 10px;
