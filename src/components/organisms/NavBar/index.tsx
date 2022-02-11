@@ -37,7 +37,7 @@ export function NavBar() {
           imageUrl={CURRENT_CHAT_ROOM.imageUrl}
           unread={CURRENT_CHAT_ROOM.unread}
           lastMessage={messages[messages.length - 1]?.content || '메시지가 없습니다'}
-          lastTimestamp={messages[messages.length - 1]?.date.slice(2, 11) || ''}
+          lastTimestamp={messages[messages.length - 1]?.date.slice(11, 16) || ''}
           status={CURRENT_CHAT_ROOM.status}
           isSelected
         />

@@ -22,8 +22,8 @@ export function FloatButton({ content, onDelete, onComment }: IFloatButtonProps)
 
   return (
     <S.Containr>
-      <FontAwesomeIcon className="delete" icon={faTrash} onClick={onClick} />
-      <FontAwesomeIcon className="comment" icon={faComment} onClick={onComment} />
+      <FontAwesomeIcon cursor="pointer" className="delete" icon={faTrash} onClick={onClick} />
+      <FontAwesomeIcon cursor="pointer" className="comment" icon={faComment} onClick={onComment} />
       {isOpen && <DeleteModal content={content} onDelete={onDelete} setIsOpen={setIsOpen} />}
     </S.Containr>
   );

@@ -30,7 +30,7 @@ function Modal({ content, onDelete, setIsOpen }: IDeleteModal) {
   };
   return (
     <S.Container>
-      <S.Text>정말 삭제하시겠어요?</S.Text>
+      <S.Text>정말 삭제할까요?</S.Text>
       <S.Description>{trimString(content, 10)}</S.Description>
       <div>
         <S.DelButton onClick={() => onClick(onDelete)}>확인</S.DelButton>

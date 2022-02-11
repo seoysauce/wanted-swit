@@ -47,8 +47,8 @@ export function ChatRoom() {
             <Chat key={message.messageId} message={message} setComment={setComment} />
           ))}
         </S.MessageBox>
-        <InputMessage replyInfo={comment} />
       </S.Wrap>
+      <InputMessage replyInfo={comment} />
     </S.Container>
   );
 }
