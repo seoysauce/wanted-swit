@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
-export const Content = styled.div`
+interface IContentProps {
+  isUser: boolean;
+}
+
+export const Content = styled.div<IContentProps>`
   color: #343434;
-  background-color: white;
+  background-color: ${(props) => (props.isUser ? `#F8E432;` : `#ffffff;`)}
   width: fit-content;
   max-width: 922px;
   padding: 5px 10px;
