@@ -27,7 +27,7 @@ export const TextArea = styled.textarea`
   color: inherit;
   font: inherit;
   margin: 0;
-  overflow: auto;
+  overflow-y: scroll;
   font-family: inherit;
   line-height: inherit;
   border: none;

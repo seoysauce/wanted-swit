@@ -20,6 +20,18 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [message, setMessage] = useState('');
 
+  const setInput = (input: string) => {
+    if (!textAreaRef.current) return;
+    console.log(textAreaRef.current.style.height); //
+    setMessage(input);
+    textAreaRef.current.style.height = 'auto';
+    textAreaRef.current.style.height = `${Math.min(textAreaRef.current.scrollHeight, 100)}px`;
+  };
+
+  const clearInput = () => {
+    setMessage('');
+  };
+
   useEffect(() => {
     if (!textAreaRef.current) return;
     textAreaRef.current.setAttribute(
@@ -31,13 +43,15 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   useEffect(() => {
     if (replyInfo.userName !== '' && replyInfo.content !== '') {
       const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n`;
-      setMessage(`${preFix}${message}`);
+
+      setInput(`${preFix}${message}`);
+      if (textAreaRef.current) {
+        // textAreaRef.current.value = `${preFix}${message}`;
+        // 자동으로 커지게 해야 하는데?
+        textAreaRef.current.focus();
+      }
     }
   }, [replyInfo]);
-
-  const clearInput = () => {
-    setMessage('');
-  };
 
   const convertInputToMessage = (input: string) => ({
     ...user,
@@ -62,11 +76,7 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (!textAreaRef.current) return;
-    console.log(textAreaRef.current.style.height);
-    textAreaRef.current.style.height = 'auto';
-    textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
-    setMessage(e.target.value);
+    setInput(e.target.value);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
