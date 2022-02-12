@@ -60,25 +60,9 @@
     <td align="center"><b>입력창, 메시지 답장, 대화 스크롤 구현</b></td>
     <td align="center"><b>사이드바, 레이아웃, 반응형 구현</b></td>
     <td align="center"><b>메시지 표시 및 삭제 구현</b></td>
-    <td align="center"><b>FE Developer</b></td>
+    <td align="center"><b>리팩토링</b></td>
   </tr>
 </table>
-
-<br>
-<hr>
-<br>
-
-## 과제 소개
-
-(redux에서 state 설정한 방법 소개?)
-(추가적으로 구현한 내용 소개?)
-
-- 과제 소개 1
-
-- 과제 소개 2
-
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 <br>
 <hr>
