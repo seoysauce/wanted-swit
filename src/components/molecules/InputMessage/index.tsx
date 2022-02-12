@@ -17,25 +17,26 @@ interface IInputMessage {
 export function InputMessage({ replyInfo }: IInputMessage) {
   const user = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
-  const textAreaRef = useRef(null);
-
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [message, setMessage] = useState('');
-  const [inputRows, setInputRows] = useState(4);
+
+  useEffect(() => {
+    if (!textAreaRef.current) return;
+    textAreaRef.current.setAttribute(
+      'style',
+      `height: ${textAreaRef.current.scrollHeight}px;overflow-y:hidden;`,
+    );
+  }, []);
 
   useEffect(() => {
     if (replyInfo.userName !== '' && replyInfo.content !== '') {
-      const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n\n`;
+      const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n`;
       setMessage(`${preFix}${message}`);
     }
   }, [replyInfo]);
 
   const clearInput = () => {
     setMessage('');
-    setInputRows(4);
-  };
-
-  const setRows = (amount: number) => {
-    setInputRows(Math.min(INPUT_MESSAGE.MAX_ROWS, amount));
   };
 
   const convertInputToMessage = (input: string) => ({
@@ -61,15 +62,16 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if (!textAreaRef.current) return;
+    console.log(textAreaRef.current.style.height);
+    textAreaRef.current.style.height = 'auto';
+    textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
     setMessage(e.target.value);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     if (e.key === 'Enter') {
-      e.preventDefault();
       if (e.shiftKey) {
-        setRows(inputRows + 1);
         return;
       }
       sendMessage();
@@ -82,8 +84,7 @@ export function InputMessage({ replyInfo }: IInputMessage) {
         <S.TextArea
           placeholder="Enter message"
           onChange={handleChange}
-          onKeyPress={handleKeyPress}
-          rows={inputRows}
+          onKeyDown={handleKeyPress}
           cols={INPUT_MESSAGE.WIDTH}
           value={message}
           ref={textAreaRef}
