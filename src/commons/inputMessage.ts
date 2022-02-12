@@ -1,4 +1,4 @@
 export const INPUT_MESSAGE = {
-  MAX_ROWS: 7,
-  WIDTH: 80,
+  WIDTH: 50,
+  MAX_HEIGHT: 107,
 };
