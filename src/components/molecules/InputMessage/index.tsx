@@ -62,15 +62,17 @@ export function InputMessage({ replyInfo }: IInputMessage) {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(message);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     // console.log(e.target.value);
     setMessage(e.target.value);
+    console.log(e.target.value);
     // setMessage(e.target.value.replaceAll(messagePreFix, ''));
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -83,12 +85,12 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   };
 
   return (
-    <S.Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}>
+    <S.Form onSubmit={handleSubmit}>
       <S.InputBox>
         <S.TextArea
           placeholder="Enter message"
           onChange={handleChange}
-          onKeyDown={handleKeyDown}
+          onKeyPress={handleKeyPress}
           rows={inputRows}
           cols={INPUT_MESSAGE.WIDTH}
           value={message} // value={`${messagePreFix}${message}`}
