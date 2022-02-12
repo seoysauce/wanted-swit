@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from 'hooks';
 import { dateToString, isMessageEmpty } from 'utils';
 import { IInputMessage } from 'types';
 import { nanoid } from '@reduxjs/toolkit';
+import { INPUT_MESSAGE } from 'commons';
 
 export const useInputMessage = ({
   replyInfo,
@@ -22,9 +23,15 @@ export const useInputMessage = ({
 
   const resizeTextArea = () => {
     if (!textAreaRef.current) return;
-    console.log(textAreaRef.current.scrollHeight); //
     textAreaRef.current.style.height = 'auto';
-    textAreaRef.current.style.height = `${Math.min(textAreaRef.current.scrollHeight, 100)}px`;
+    textAreaRef.current.style.height = `${Math.min(
+      textAreaRef.current.scrollHeight,
+      INPUT_MESSAGE.MAX_HEIGHT,
+    )}px`;
+
+    if (Number(textAreaRef.current.scrollHeight) > INPUT_MESSAGE.MAX_HEIGHT) {
+      textAreaRef.current.style.overflowY = 'scroll';
+    }
   };
 
   const setInput = (input: string) => {
