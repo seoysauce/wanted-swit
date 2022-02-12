@@ -19,21 +19,18 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   const dispatch = useAppDispatch();
   const textAreaRef = useRef(null);
 
-  // const [messagePreFix, setMessagePreFix] = useState('');
   const [message, setMessage] = useState('');
   const [inputRows, setInputRows] = useState(4);
 
   useEffect(() => {
     if (replyInfo.userName !== '' && replyInfo.content !== '') {
       const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n\n`;
-      // setMessagePreFix(preFix);
       setMessage(`${preFix}${message}`);
     }
   }, [replyInfo]);
 
   const clearInput = () => {
     setMessage('');
-    // setMessagePreFix('');
     setInputRows(4);
   };
 
@@ -56,20 +53,15 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   const sendMessage = () => {
     clearInput();
     if (isMessageEmpty(message)) return;
-    // dispatchMessage(`${messagePreFix}${message}`);
     dispatchMessage(message);
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(message);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    // console.log(e.target.value);
     setMessage(e.target.value);
-    console.log(e.target.value);
-    // setMessage(e.target.value.replaceAll(messagePreFix, ''));
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -93,7 +85,7 @@ export function InputMessage({ replyInfo }: IInputMessage) {
           onKeyPress={handleKeyPress}
           rows={inputRows}
           cols={INPUT_MESSAGE.WIDTH}
-          value={message} // value={`${messagePreFix}${message}`}
+          value={message}
           ref={textAreaRef}
           spellCheck={false}
         />
