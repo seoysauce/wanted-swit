@@ -41,8 +41,8 @@ export function ChatRoom() {
           {CURRENT_CHAT_ROOM.membersCount}
         </S.Member>
       </S.TopBar>
-      <S.Wrap>
-        <S.MessageBox ref={messageBoxRef}>
+      <S.Wrap ref={messageBoxRef}>
+        <S.MessageBox>
           {messages.map((message) => (
             <Chat key={message.messageId} message={message} setComment={setComment} />
           ))}
