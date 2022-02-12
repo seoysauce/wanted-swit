@@ -3,6 +3,7 @@ import { STYLE } from 'commons';
 
 export const Container = styled.div`
   min-width: 300px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
