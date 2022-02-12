@@ -82,11 +82,15 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  background-color: #efefef;
+  ${(props) =>
+    props.value
+      ? `background-color: #ff585d;
+     color: #ffff;`
+      : `background-color: #efefef;
+     color: rgba(16, 16, 16, 0.3);`};
   border-radius: 10px;
   border-width: 0;
   box-sizing: border-box;
-  color: rgba(16, 16, 16, 0.3);
   cursor: pointer;
   display: inline-block;
   font-size: 100%;
@@ -96,6 +100,7 @@ export const Button = styled.button`
   width: 90px;
   text-align: center;
   vertical-align: middle;
+  transition: 0.3s;
   @media screen and (max-width: ${STYLE.WEB_WIDTH}px) {
     font-size: 14px;
     width: 80px;

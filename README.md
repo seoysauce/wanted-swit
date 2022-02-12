@@ -75,11 +75,8 @@
 
 - 과제 소개 1
 
-![slider](https://user-images.githubusercontent.com/28294925/150082839-44f592e6-bdaa-4081-9281-12075b2c60d0.gif)
-
 - 과제 소개 2
 
-![responsive](https://user-images.githubusercontent.com/28294925/150082899-efbb1c3d-fd02-4134-8948-05d14bcb28de.gif)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -129,7 +126,7 @@
 1. Repository를 clone한다.
 
   ```sh
-  git clone https://github.com/gml9812/wanted-frontend-pre-on-boarding-mission.git
+  git clone https://github.com/gml9812/wanted-swit.git
   ```
 
 2. NPM Package들을 설치한다.
@@ -153,14 +150,23 @@
 ## 프로젝트 구조
 
 ```bash
+.
+├── @types
+│   └── global      # TypeScript 모듈 확장자 지정
 ├── public
-│   ├── index.html
-├── src
-│   ├── components
-│   ├── hooks
-│   ├── constants
-│   └── utils
-└── some_more_file.xxx
+│   └── index.html
+└── src
+    ├── Router.tsx
+    ├── assets      # icons, images
+    ├── commons     # constants, mock-data 등
+    ├── components  # atomic design에 따른 세부 컴포넌트
+    ├── hooks
+    ├── index.tsx
+    ├── pages
+    ├── redux
+    ├── styles      # global styles
+    ├── types       # 재사용 typ
+    └── utils
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
