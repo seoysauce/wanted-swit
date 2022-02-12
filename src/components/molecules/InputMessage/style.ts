@@ -6,9 +6,8 @@ export const InputBox = styled.div`
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: 14px;
-  line-height: 1.42857143;
-  font-family: 'Roboto', sans-serif !important;
-  /* color: #747584; */
+  font-weight: 400;
+  line-height: 22px;
   box-sizing: border-box;
   width: 100%;
   float: left;
@@ -27,16 +26,15 @@ export const TextArea = styled.textarea`
   color: inherit;
   font: inherit;
   margin: 0;
-  overflow: auto;
   font-family: inherit;
   line-height: inherit;
   border: none;
-  font-size: 12px;
   width: calc(100% - 100px);
   float: left;
   background: transparent;
   margin-bottom: 10px;
   resize: none;
+  outline: none;
   &::placeholder {
     color: #c4c4c4;
   }
@@ -71,7 +69,7 @@ export const Button = styled.button`
   display: inline-block !important;
   width: 80px;
   position: absolute;
-  top: 26px;
+  bottom: 23px;
   right: 25px;
   border-radius: 25px;
 `;

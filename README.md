@@ -160,12 +160,12 @@
     ├── assets      # icons, images
     ├── commons     # constants, mock-data 등
     ├── components  # atomic design에 따른 세부 컴포넌트
-    ├── hooks
+    ├── hooks # custom hooks
     ├── index.tsx
     ├── pages
-    ├── redux
+    ├── redux # store, slice 등 redux 관련 파일
     ├── styles      # global styles
-    ├── types       # 재사용 typ
+    ├── types       # 재사용될 type 모음
     └── utils
 ```
 

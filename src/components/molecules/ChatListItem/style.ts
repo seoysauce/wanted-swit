@@ -87,6 +87,7 @@ export const Div = styled.div`
 export const Timestamp = styled.div`
   font-size: 10px;
   color: rgba(0, 0, 0, 0.3);
+  min-width: max-content;
 `;
 
 export const Badge = styled.div`
