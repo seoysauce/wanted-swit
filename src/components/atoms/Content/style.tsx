@@ -4,6 +4,7 @@ export const Content = styled.div`
   color: #343434;
   background-color: white;
   width: fit-content;
+  max-width: 922px;
   padding: 5px 10px;
   box-shadow: rgba(99, 99, 99, 0.15) 0px 2px 8px 0px;
   border-radius: 10px;

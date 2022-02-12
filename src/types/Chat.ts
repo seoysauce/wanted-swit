@@ -18,3 +18,11 @@ export interface ICommentState {
   userName: string;
   content: string;
 }
+
+export interface IInputMessage {
+  replyInfo: {
+    userId: string;
+    userName: string;
+    content: string;
+  };
+}
