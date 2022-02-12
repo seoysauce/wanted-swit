@@ -19,6 +19,7 @@ export function InputMessage({ replyInfo }: IInputMessage) {
           onChange={handleChange}
           onKeyDown={handleKeyPress}
           cols={INPUT_MESSAGE.WIDTH}
+          rows={1}
           value={message}
           ref={textAreaRef}
           spellCheck={false}

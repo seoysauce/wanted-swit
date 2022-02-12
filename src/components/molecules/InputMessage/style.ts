@@ -8,7 +8,6 @@ export const InputBox = styled.div`
   font-size: 14px;
   line-height: 1.42857143;
   font-family: 'Roboto', sans-serif !important;
-  /* color: #747584; */
   box-sizing: border-box;
   width: 100%;
   float: left;
@@ -37,6 +36,7 @@ export const TextArea = styled.textarea`
   background: transparent;
   margin-bottom: 10px;
   resize: none;
+  outline: none;
   &::placeholder {
     color: #c4c4c4;
   }

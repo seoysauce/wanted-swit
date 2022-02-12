@@ -1,4 +1,4 @@
 export const INPUT_MESSAGE = {
-  WIDTH: 80,
+  WIDTH: 50,
   MAX_HEIGHT: 107,
 };

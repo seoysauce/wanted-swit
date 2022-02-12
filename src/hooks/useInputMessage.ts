@@ -20,16 +20,22 @@ export const useInputMessage = ({
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const [message, setMessage] = useState('');
 
-  const setInput = (input: string) => {
+  const resizeTextArea = () => {
     if (!textAreaRef.current) return;
-    console.log(textAreaRef.current.style.height); //
-    setMessage(input);
+    console.log(textAreaRef.current.scrollHeight); //
     textAreaRef.current.style.height = 'auto';
     textAreaRef.current.style.height = `${Math.min(textAreaRef.current.scrollHeight, 100)}px`;
   };
 
+  const setInput = (input: string) => {
+    setMessage(input);
+    resizeTextArea();
+  };
+
   const clearInput = () => {
     setMessage('');
+    if (textAreaRef.current) textAreaRef.current.value = '';
+    resizeTextArea();
   };
 
   useEffect(() => {
@@ -43,11 +49,11 @@ export const useInputMessage = ({
   useEffect(() => {
     if (replyInfo.userName !== '' && replyInfo.content !== '') {
       const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n`;
-
       setInput(`${preFix}${message}`);
+
       if (textAreaRef.current) {
-        // textAreaRef.current.value = `${preFix}${message}`;
-        // 자동으로 커지게 해야 하는데?
+        textAreaRef.current.value = `${preFix}${message}`;
+        resizeTextArea();
         textAreaRef.current.focus();
       }
     }
@@ -66,8 +72,8 @@ export const useInputMessage = ({
   };
 
   const sendMessage = () => {
-    clearInput();
     if (isMessageEmpty(message)) return;
+    clearInput();
     dispatchMessage(message);
   };
 
@@ -84,6 +90,7 @@ export const useInputMessage = ({
       if (e.shiftKey) {
         return;
       }
+      e.preventDefault();
       sendMessage();
     }
   };
