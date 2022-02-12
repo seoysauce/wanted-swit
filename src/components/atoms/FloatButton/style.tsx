@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const Containr = styled.div`
-  position: absolute;
-  right: 20px;
+export const Wrap = styled.div`
+  /* position: absolute; */
+  /* right: 20px; */
 
   display: flex;
   justify-content: space-between;
@@ -24,4 +24,14 @@ export const Containr = styled.div`
     transition: 0.3s;
     color: #00569d;
   }
+`;
+
+export const Containr = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 20px;
+  height: 100%;
+  bottom: 0;
 `;
