@@ -23,7 +23,7 @@ export const Wrap = styled.div`
   & .delete:hover::before {
     content: '삭제';
     position: absolute;
-    top: -30px;
+    top: -8px;
     left: 5px;
     color: black;
 
@@ -44,7 +44,7 @@ export const Wrap = styled.div`
   & .comment:hover::before {
     content: '댓글';
     position: absolute;
-    top: -30px;
+    top: -8px;
     right: 5px;
     color: black;
 

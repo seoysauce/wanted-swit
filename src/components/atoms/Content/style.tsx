@@ -6,7 +6,7 @@ interface IContentProps {
 
 export const Content = styled.div<IContentProps>`
   color: #343434;
-  background-color: ${(props) => (props.isUser ? `#F8E432;` : `#ffffff;`)}
+  background-color: ${(props) => (props.isUser ? `#fff6b5;` : `#ffffff;`)}
   width: fit-content;
   max-width: 922px;
   padding: 5px 10px;
