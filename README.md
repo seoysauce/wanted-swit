@@ -21,6 +21,8 @@
 
 <br>
 
+
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -69,6 +71,9 @@
 <br>
 
 ## 구현한 기능
+
+![switTyranno](https://user-images.githubusercontent.com/65898861/153703378-b8cde5e4-b98b-4dc7-aa3e-84b2f4d54834.gif)
+
 - [x] 접속 시 사용자의 닉네임을 묻는 모달 창이 보여진다.
 - [x] 사이드바, 메시지 목록, 모달 창 등에 반응형이 구현되어 있다. 
 
