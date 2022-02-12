@@ -19,21 +19,18 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   const dispatch = useAppDispatch();
   const textAreaRef = useRef(null);
 
-  // const [messagePreFix, setMessagePreFix] = useState('');
   const [message, setMessage] = useState('');
   const [inputRows, setInputRows] = useState(4);
 
   useEffect(() => {
     if (replyInfo.userName !== '' && replyInfo.content !== '') {
       const preFix = `${replyInfo.userName}\n${replyInfo.content}\n(회신)\n\n`;
-      // setMessagePreFix(preFix);
       setMessage(`${preFix}${message}`);
     }
   }, [replyInfo]);
 
   const clearInput = () => {
     setMessage('');
-    // setMessagePreFix('');
     setInputRows(4);
   };
 
@@ -56,7 +53,6 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   const sendMessage = () => {
     clearInput();
     if (isMessageEmpty(message)) return;
-    // dispatchMessage(`${messagePreFix}${message}`);
     dispatchMessage(message);
   };
 
@@ -65,12 +61,10 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    // console.log(e.target.value);
     setMessage(e.target.value);
-    // setMessage(e.target.value.replaceAll(messagePreFix, ''));
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -83,15 +77,15 @@ export function InputMessage({ replyInfo }: IInputMessage) {
   };
 
   return (
-    <S.Form onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e)}>
+    <S.Form onSubmit={handleSubmit}>
       <S.InputBox>
         <S.TextArea
           placeholder="Enter message"
           onChange={handleChange}
-          onKeyDown={handleKeyDown}
+          onKeyPress={handleKeyPress}
           rows={inputRows}
           cols={INPUT_MESSAGE.WIDTH}
-          value={message} // value={`${messagePreFix}${message}`}
+          value={message}
           ref={textAreaRef}
           spellCheck={false}
         />
