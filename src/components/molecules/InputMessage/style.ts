@@ -69,7 +69,7 @@ export const Button = styled.button`
   display: inline-block !important;
   width: 80px;
   position: absolute;
-  top: 26px;
+  bottom: 23px;
   right: 25px;
   border-radius: 25px;
 `;
