@@ -6,8 +6,8 @@ export const InputBox = styled.div`
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   font-size: 14px;
-  line-height: 1.42857143;
-  font-family: 'Roboto', sans-serif !important;
+  font-weight: 400;
+  line-height: 22px;
   box-sizing: border-box;
   width: 100%;
   float: left;
@@ -29,7 +29,6 @@ export const TextArea = styled.textarea`
   font-family: inherit;
   line-height: inherit;
   border: none;
-  font-size: 12px;
   width: calc(100% - 100px);
   float: left;
   background: transparent;

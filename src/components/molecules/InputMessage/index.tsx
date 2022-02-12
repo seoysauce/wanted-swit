@@ -17,7 +17,7 @@ export function InputMessage({ replyInfo }: IInputMessage) {
         <S.TextArea
           placeholder="Enter message"
           onChange={handleChange}
-          onKeyDown={handleKeyPress}
+          onKeyPress={handleKeyPress}
           cols={INPUT_MESSAGE.WIDTH}
           rows={1}
           value={message}
