@@ -27,7 +27,7 @@ function Modal({ name, onChange, onSubmit }: IModalProps) {
         value={name}
         required
       />
-      <S.Button>채팅 시작</S.Button>
+      <S.Button value={name}>채팅 시작</S.Button>
     </S.Container>
   );
 }
