@@ -35,7 +35,7 @@ export function Chat({ message, setComment }: IChatProps) {
           userName={signInUserInfo.userId === userId ? `${userName} *` : userName}
           date={date}
         />
-        <Content content={content} />
+        <Content content={content} isUser={signInUserInfo.userId === userId} />
       </div>
       {isHover && <FloatButton content={content} onDelete={onDelete} onComment={onComment} />}
     </S.Container>
